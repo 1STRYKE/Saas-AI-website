@@ -234,47 +234,85 @@
     .trust-carousel {
       position: relative;
       overflow: hidden;
-      border-radius: 16px;
-      padding: 14px 0;
-      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      border-radius: 20px;
+      padding: 16px 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
     }
 
-    .trust-track {
+    .trust-carousel::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto 15%;
+      width: 380px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(123, 92, 255, 0.22), transparent 68%);
+      pointer-events: none;
+      filter: blur(8px);
+    }
+
+    .trust-lane {
       display: flex;
       width: max-content;
       gap: 14px;
-      animation: marquee 24s linear infinite;
-      padding-inline: 8px;
+      padding: 8px;
+      animation: marqueeX 26s linear infinite;
+      will-change: transform;
     }
 
-    .trust-carousel:hover .trust-track {
+    .trust-lane--reverse {
+      animation-direction: reverse;
+      animation-duration: 30s;
+      margin-top: 8px;
+    }
+
+    .trust-carousel:hover .trust-lane {
       animation-play-state: paused;
     }
 
-    @keyframes marquee {
+    @keyframes marqueeX {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
     .logo-chip {
-      min-width: 170px;
-      text-align: center;
-      color: #ced3e7;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      padding: 14px 18px;
+      min-width: 190px;
+      padding: 13px 18px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+      color: #eef2ff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(120deg, rgba(9, 14, 29, 0.88), rgba(16, 21, 42, 0.9));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 22px rgba(29, 42, 88, 0.24);
+      transition: transform .2s ease, border-color .2s ease;
     }
 
-    .logo-wordmark {
-      height: 18px;
-      width: auto;
-      opacity: 0.92;
-      filter: drop-shadow(0 0 10px rgba(120, 140, 255, 0.24));
+    .logo-chip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(138, 170, 255, 0.72);
+    }
+
+    .logo-mark-mini {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: linear-gradient(140deg, #7b5cff, #2aa8ff);
+      box-shadow: 0 0 16px rgba(123, 92, 255, 0.52);
+      flex: 0 0 auto;
+    }
+
+    .logo-name {
+      font-size: 0.98rem;
+      letter-spacing: 0.35px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #e9efff;
+      opacity: 0.96;
     }
 
     .features-grid {
@@ -474,7 +512,34 @@
     }
 
     footer { padding-bottom: 35px; }
+    .footer-retro {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      padding: 28px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        linear-gradient(to top, rgba(123, 92, 255, 0.12), transparent 45%),
+        linear-gradient(160deg, rgba(10, 14, 30, 0.94), rgba(7, 10, 20, 0.95));
+    }
+
+    .footer-retro::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(133, 155, 255, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(133, 155, 255, 0.14) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to top, black 25%, transparent 85%);
+      -webkit-mask-image: linear-gradient(to top, black 25%, transparent 85%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
     .footer-wrap {
+      position: relative;
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -546,20 +611,32 @@
 
     <section class="section container reveal">
       <p class="section-subtext">Trusted by growth teams at high-velocity brands</p>
-      <div class="trust-carousel glass" aria-label="Company logos carousel">
-        <div class="trust-track">
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Stripe"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">stripe</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Notion"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">notion</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Shopify"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">shopify</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Slack"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">slack</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="HubSpot"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">HubSpot</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Airtable"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">airtable</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Stripe"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">stripe</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Notion"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">notion</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Shopify"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">shopify</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Slack"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">slack</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="HubSpot"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">HubSpot</text></svg></div>
-          <div class="logo-chip glass"><svg class="logo-wordmark" viewBox="0 0 140 24" aria-label="Airtable"><text x="4" y="17" fill="currentColor" font-size="18" font-weight="800" font-family="Inter, sans-serif">airtable</text></svg></div>
+      <div class="trust-carousel" aria-label="Company logos carousel">
+        <div class="trust-lane">
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Stripe</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Notion</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Shopify</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Slack</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">HubSpot</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Airtable</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Vercel</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Linear</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Stripe</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Notion</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Shopify</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Slack</span></div>
+        </div>
+        <div class="trust-lane trust-lane--reverse" aria-hidden="true">
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Canva</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Framer</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Figma</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Zapier</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Webflow</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Miro</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Canva</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Framer</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Figma</span></div>
+          <div class="logo-chip"><span class="logo-mark-mini"></span><span class="logo-name">Zapier</span></div>
         </div>
       </div>
     </section>
@@ -677,7 +754,8 @@
   </main>
 
   <footer class="container reveal">
-    <div class="footer-wrap glass">
+    <div class="footer-retro">
+      <div class="footer-wrap">
       <div class="logo"><span class="logo-mark"></span>InkFlow AI</div>
       <div class="footer-links">
         <a href="#">Product</a>
@@ -687,6 +765,7 @@
         <a href="#">Careers</a>
         <a href="#">X</a>
         <a href="#">LinkedIn</a>
+      </div>
       </div>
     </div>
   </footer>
